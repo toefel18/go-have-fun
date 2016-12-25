@@ -1,32 +1,29 @@
 package main
 
 import (
-    "gopkg.in/gin-gonic/gin.v1"
-    "net/http"
-    "time"
-    "fmt"
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"time"
 )
 
-//Try  /time?zone=UTC    /time?zone=Asia/Shanghai   /time?zone=Europe/Amsterdam   /time?zone=MST
-
 func main() {
-    router := gin.Default()
-    router.GET("/status", StatusHandler)
-    router.GET("/time", TimeHandler)
-    router.Run(":8888")
+	router := gin.Default()
+	router.GET("/time", currentTimeHandler)
+	router.Run(":8888")
 }
 
-// StatusHandler returns the status of the Time Service
-func StatusHandler(c *gin.Context) {
-    c.String(http.StatusOK, "TimeServer Status = OK")
+// currentTimeHandler returns the current time in a specific time zone, UTC being the default
+// Try  /time?zone=UTC    /time?zone=Asia/Shanghai   /time?zone=Europe/Amsterdam   /time?zone=MST
+func currentTimeHandler(c *gin.Context) {
+	zoneQuery := c.DefaultQuery("zone", "UTC")
+	if zone, err := time.LoadLocation(zoneQuery); err != nil {
+		c.String(http.StatusBadRequest, fmt.Sprintf("zone %v not found", zoneQuery))
+	} else {
+		c.JSON(http.StatusOK, gin.H{"time": formatCurrentTimeInZone(zone)})
+	}
 }
 
-// TimeHandler returns the current time in a specific time zone, UTC being the default
-func TimeHandler(c *gin.Context) {
-    requestedTimeZone := c.DefaultQuery("zone", "UTC")
-    if timeZone, err := time.LoadLocation(requestedTimeZone); err == nil {
-        c.JSON(http.StatusOK, gin.H{"time": time.Now().In(timeZone).Format("2006-01-02T15:04:05.99MST")})
-    } else {
-        c.String(http.StatusBadRequest, fmt.Sprintf("time zone %v not found", requestedTimeZone))
-    }
+func formatCurrentTimeInZone(zone *time.Location) string {
+	return time.Now().In(zone).Format("2006-01-02T15:04:05.99MST")
 }
