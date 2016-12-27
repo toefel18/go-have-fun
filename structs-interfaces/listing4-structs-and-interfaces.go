@@ -11,15 +11,15 @@ type message struct {
 }
 
 //ToJson returns the message as JSON
-func (msg message) ToJson() string {
+func (msg *message) ToJson() string {
 	jsonMsg, _ := json.Marshal(msg)
 	return string(jsonMsg)
 }
 
 func main() {
 	defer fmt.Println("Closing! Bye!")
-	fromRob := message{"Hi Gopher", "Rob"}
 	fromChris := message{Text: "Hi Gopher", Author: "Christophe"}
+	fromRob := message{"Hi Gopher", "Rob"}
 	fmt.Println(fromRob.ToJson())
 	printJson(fromChris)
 }
