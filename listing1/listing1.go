@@ -20,10 +20,10 @@ func currentTimeHandler(c *gin.Context) {
 	if zone, err := time.LoadLocation(zoneQuery); err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("zone %v not found", zoneQuery))
 	} else {
-		c.JSON(http.StatusOK, gin.H{"time": formatCurrentTimeInZone(zone)})
+		c.JSON(http.StatusOK, gin.H{"time": formatTimeInZone(time.Now(), zone)})
 	}
 }
 
-func formatCurrentTimeInZone(zone *time.Location) string {
-	return time.Now().In(zone).Format("2006-01-02T15:04:05.99MST")
+func formatTimeInZone(t time.Time, zone *time.Location) string {
+	return t.In(zone).Format("2006-01-02T15:04:05.99MST")
 }
