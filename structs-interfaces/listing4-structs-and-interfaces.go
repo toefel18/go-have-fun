@@ -10,23 +10,24 @@ type message struct {
 	Author string
 }
 
-//toJson returns the message as JSON
-func (msg message) toJson() string {
+//ToJson returns the message as JSON
+func (msg message) ToJson() string {
 	jsonMsg, _ := json.Marshal(msg)
 	return string(jsonMsg)
 }
 
 func main() {
+	defer fmt.Println("Closing! Bye!")
 	fromRob := message{"Hi Gopher", "Rob"}
 	fromChris := message{Text: "Hi Gopher", Author: "Christophe"}
-	fmt.Println(fromRob.toJson())
-	writeJson(fromChris)
+	fmt.Println(fromRob.ToJson())
+	printJson(fromChris)
 }
 
-func writeJson(something Jsonizable) {
-	fmt.Println(something.toJson())
+type Jsonizer interface {
+	ToJson() string
 }
 
-type Jsonizable interface {
-	toJson() string
+func printJson(something Jsonizer) {
+	fmt.Println(something.ToJson())
 }

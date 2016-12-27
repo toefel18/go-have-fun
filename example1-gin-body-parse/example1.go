@@ -23,10 +23,6 @@ func (msg message) toJson() string {
 	return string(jsonMsg)
 }
 
-type Jsonizable interface {
-	toJson() string
-}
-
 // toJsonHandler parses the request body and responds with the same message in JSON
 // curl -X POST http://localhost:8888/tojson -H "Content-Type: application/xml"  -d "<Message><Text>Hi Gopher</Text><Author>Christope</Author></Message>"
 // curl -X POST http://localhost:8888/tojson -H "Content-Type: application/json" -d '{"Text":"Hi Gopher", "Author":"Christophe"}'
