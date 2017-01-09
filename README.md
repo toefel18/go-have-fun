@@ -1,12 +1,13 @@
 # Go-have-fun
 
-Contains the runnable sources of the Golang article in Java Magazine by Rob Brinkman and Christophe Hesters. 
+This repository contains the runnable sources presented in the Golang article written by Rob Brinkman and Christophe Hesters 
+published in Java Magazine Q1 2017.
 
-Go (Golang) is a 'new' programming language that just turned 7, and it's quickly gaining traction (from 54th to 13th
-place in the [Tiobe index](http://www.tiobe.com/tiobe-index/)). Big projects like Docker and Kubernetes are written 
-in Go, as is many of Google's internal software. Go compiles quickly to machine code yet has the convenience of garbage 
-collection and the power of run-time reflection. It's a fast, statically typed, compiled language that feels like a 
-dynamically typed, interpreted language. 
+Go (Golang) is a 'new' programming language that just turned 7 and it's quickly gaining traction (it's ranking went from 
+the 54th place in Jan 2016 to the 13th place in Jan 2017 as stated in the [Tiobe index](http://www.tiobe.com/tiobe-index/)). 
+Big projects such as Docker and Kubernetes are written in Go, as is much of Google's internal software. Go compiles quickly 
+to machine code yet has the convenience of garbage collection and the power of run-time reflection. It's a fast, statically 
+typed, compiled language that feels like a dynamically typed, interpreted language. 
 
 ### Running the code from the article
 
@@ -64,5 +65,5 @@ To get started:
 
 A really good starting point is to work through [A Tour of Go](https://tour.golang.org/welcome/1). 
 A Tour of Go is an online interactive course by Google. The tour contains multiple modules explaining 
-Go step by step. It contains simple assignments and you can test all the code in the browser! 
+Go step by step. It contains simple assignments and allows you to test all the code in the browser! 
  
