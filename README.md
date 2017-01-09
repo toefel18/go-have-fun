@@ -64,6 +64,6 @@ To get started:
 ### Start learning Go
 
 A really good starting point is to work through [A Tour of Go](https://tour.golang.org/welcome/1). 
-A Tour of Go is an online interactive course by Google. The tour contains multiple modules explaining 
-Go step by step. It contains simple assignments and allows you to test all the code in the browser! 
+A Tour of Go is an online interactive course developed by Google. The tour contains multiple modules explaining 
+Go step-by-step. It contains simple assignments and allows you to test all the code in the browser! 
  
